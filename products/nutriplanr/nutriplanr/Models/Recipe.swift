@@ -1,7 +1,7 @@
 import Foundation
 
 struct Recipe: Identifiable, Codable {
-    let id = UUID()
+    let id: UUID
     
     // Basic Information
     var name: String
@@ -18,6 +18,30 @@ struct Recipe: Identifiable, Codable {
     var protein: Double // in grams
     var carbohydrates: Double // in grams
     var fat: Double // in grams
+    
+    init(name: String, description: String, cuisineType: CuisineType, dietaryTags: Set<DietaryRestriction>, difficulty: Difficulty, prepTime: Int, cookTime: Int, servings: Int, calories: Double, protein: Double, carbohydrates: Double, fat: Double, fiber: Double, sugar: Double, sodium: Double, ingredients: [RecipeIngredient], instructions: [String], imageURL: String? = nil, tags: Set<String>, isFavorite: Bool = false) {
+        self.id = UUID()
+        self.name = name
+        self.description = description
+        self.cuisineType = cuisineType
+        self.dietaryTags = dietaryTags
+        self.difficulty = difficulty
+        self.prepTime = prepTime
+        self.cookTime = cookTime
+        self.servings = servings
+        self.calories = calories
+        self.protein = protein
+        self.carbohydrates = carbohydrates
+        self.fat = fat
+        self.fiber = fiber
+        self.sugar = sugar
+        self.sodium = sodium
+        self.ingredients = ingredients
+        self.instructions = instructions
+        self.imageURL = imageURL
+        self.tags = tags
+        self.isFavorite = isFavorite
+    }
     var fiber: Double // in grams
     var sugar: Double // in grams
     var sodium: Double // in milligrams
@@ -62,6 +86,7 @@ struct Recipe: Identifiable, Codable {
          protein: Double, carbohydrates: Double, fat: Double, fiber: Double,
          sugar: Double, sodium: Double, ingredients: [RecipeIngredient],
          instructions: [String], imageURL: String? = nil, tags: Set<String> = []) {
+        self.id = UUID()
         self.name = name
         self.description = description
         self.cuisineType = cuisineType
@@ -81,18 +106,21 @@ struct Recipe: Identifiable, Codable {
         self.instructions = instructions
         self.imageURL = imageURL
         self.tags = tags
+        self.isFavorite = false
+        self.lastCooked = nil
     }
 }
 
 // MARK: - Supporting Types
 struct RecipeIngredient: Identifiable, Codable {
-    let id = UUID()
+    let id: UUID
     var ingredient: Ingredient
     var quantity: Double
     var unit: MeasurementUnit
     var notes: String?
     
     init(ingredient: Ingredient, quantity: Double, unit: MeasurementUnit, notes: String? = nil) {
+        self.id = UUID()
         self.ingredient = ingredient
         self.quantity = quantity
         self.unit = unit
@@ -101,15 +129,15 @@ struct RecipeIngredient: Identifiable, Codable {
 }
 
 struct Ingredient: Identifiable, Codable {
-    let id = UUID()
+    let id: UUID
     var name: String
     var category: IngredientCategory
     var nutritionalInfo: NutritionalInfo
     var isAllergen: Bool
     var tags: Set<String>
     
-    init(name: String, category: IngredientCategory, nutritionalInfo: NutritionalInfo, 
-         isAllergen: Bool = false, tags: Set<String> = []) {
+    init(name: String, category: IngredientCategory, nutritionalInfo: NutritionalInfo, isAllergen: Bool = false, tags: Set<String> = []) {
+        self.id = UUID()
         self.name = name
         self.category = category
         self.nutritionalInfo = nutritionalInfo

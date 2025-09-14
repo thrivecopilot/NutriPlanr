@@ -20,8 +20,7 @@ struct OnboardingFlowView: View {
                 
                 // Navigation buttons
                 OnboardingNavigationView(
-                    currentStep: currentStep,
-                    canProceed: canProceedToNextStep(),
+                    currentStep: $currentStep,
                     onNext: nextStep,
                     onPrevious: previousStep,
                     onComplete: completeOnboarding
@@ -131,7 +130,7 @@ struct OnboardingFlowView: View {
     private func completeOnboarding() {
         // Create user from profile
         let user = userProfile.createUser()
-        appStateManager.currentUser = user
+        appStateManager.updateUser(user)
         appStateManager.completeOnboarding()
     }
 }

@@ -48,7 +48,7 @@ struct GoalsStepView: View {
                                                     TextField("Target weight", text: $targetWeightString)
                                                         .keyboardType(.decimalPad)
                                                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                                                        .onChange(of: targetWeightString) { newValue in
+                                                        .onChange(of: targetWeightString) { _, newValue in
                                                             if let weight = Double(newValue) {
                                                                 userProfile.targetWeight = weight
                                                             }
