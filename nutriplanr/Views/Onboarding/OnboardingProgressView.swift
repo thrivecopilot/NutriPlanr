@@ -7,8 +7,12 @@ struct OnboardingProgressView: View {
         VStack(spacing: Spacing.md) {
             // Progress bar
             ProgressView(value: progressValue)
-                .progressViewStyle(LinearProgressViewStyle(tint: AppColors.primary))
+                .progressViewStyle(LinearProgressViewStyle(tint: AppColors.forestGreen))
                 .scaleEffect(x: 1, y: 2, anchor: .center)
+                .background(
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(AppColors.borderLight)
+                )
             
             // Step indicators
             HStack(spacing: Spacing.sm) {
@@ -24,10 +28,12 @@ struct OnboardingProgressView: View {
             // Current step title
             Text(currentStep.title)
                 .font(AppTypography.caption(.semibold))
-                .foregroundColor(AppColors.textSecondary)
+                .foregroundColor(AppColors.forestGreen)
         }
         .padding(.horizontal, Spacing.xl)
         .padding(.top, Spacing.lg)
+        .padding(.bottom, Spacing.md)
+        .background(AppColors.veryLightGreen)
     }
     
     private var progressValue: Double {
@@ -36,9 +42,9 @@ struct OnboardingProgressView: View {
     
     private func stepColor(for step: OnboardingStep) -> Color {
         if step.rawValue < currentStep.rawValue {
-            return AppColors.primary
+            return AppColors.forestGreen
         } else if step == currentStep {
-            return AppColors.primary
+            return AppColors.forestGreen
         } else {
             return AppColors.textSecondary.opacity(0.3)
         }

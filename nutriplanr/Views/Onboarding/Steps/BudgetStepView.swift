@@ -13,7 +13,7 @@ struct BudgetStepView: View {
                         .font(AppTypography.headline())
                         .foregroundColor(AppColors.text)
                     
-                    Text("Set your weekly food budget to help us recommend appropriate meal plans")
+                    Text("Set your weekly food budget to help NutriPlanr recommend appropriate nutrition plans")
                         .font(AppTypography.body())
                         .foregroundColor(AppColors.textSecondary)
                         .multilineTextAlignment(.center)

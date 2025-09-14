@@ -12,7 +12,7 @@ struct SummaryStepView: View {
                         .font(AppTypography.headline())
                         .foregroundColor(AppColors.text)
                     
-                    Text("Take a moment to review your information before we create your personalized meal plan")
+                    Text("Take a moment to review your information before we create your personalized nutrition plan")
                         .font(AppTypography.body())
                         .foregroundColor(AppColors.textSecondary)
                         .multilineTextAlignment(.center)
@@ -36,7 +36,7 @@ struct SummaryStepView: View {
                         .font(AppTypography.body(.semibold))
                         .foregroundColor(.green)
                     
-                    Text("Tap 'Get Started' to begin your nutrition journey with personalized meal plans and recommendations.")
+                    Text("Tap 'Get Started' to begin your nutrition journey with NutriPlanr's personalized recommendations.")
                         .font(AppTypography.body())
                         .foregroundColor(AppColors.textSecondary)
                         .multilineTextAlignment(.center)

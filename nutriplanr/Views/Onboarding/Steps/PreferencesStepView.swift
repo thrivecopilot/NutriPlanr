@@ -13,7 +13,7 @@ struct PreferencesStepView: View {
                         .font(AppTypography.headline())
                         .foregroundColor(AppColors.text)
                     
-                    Text("Customize your meal plans to match your lifestyle and preferences")
+                    Text("Customize your nutrition plans to match your lifestyle and preferences")
                         .font(AppTypography.body())
                         .foregroundColor(AppColors.textSecondary)
                         .multilineTextAlignment(.center)

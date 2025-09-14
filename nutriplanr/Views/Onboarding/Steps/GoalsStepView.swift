@@ -13,7 +13,7 @@ struct GoalsStepView: View {
                         .font(AppTypography.headline())
                         .foregroundColor(AppColors.text)
                     
-                    Text("What would you like to achieve? This helps us create the perfect meal plan for you")
+                    Text("What would you like to achieve? This helps NutriPlanr create the perfect nutrition plan for you")
                         .font(AppTypography.body())
                         .foregroundColor(AppColors.textSecondary)
                         .multilineTextAlignment(.center)

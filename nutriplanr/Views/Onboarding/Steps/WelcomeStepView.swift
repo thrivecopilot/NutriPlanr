@@ -10,11 +10,11 @@ struct WelcomeStepView: View {
             VStack(spacing: Spacing.md) {
                 Image(systemName: "heart.text.square.fill")
                     .font(.system(size: 60))
-                    .foregroundColor(AppColors.primary)
+                    .foregroundColor(AppColors.forestGreen)
                 
-                Text("Meal Plan Assistant")
+                Text("NutriPlanr")
                     .font(AppTypography.headline())
-                    .foregroundColor(AppColors.text)
+                    .foregroundColor(AppColors.forestGreen)
                     .multilineTextAlignment(.center)
                 
                 Text("Your personalized nutrition journey starts here")
@@ -58,7 +58,7 @@ struct WelcomeStepView: View {
                                 .foregroundColor(.white.opacity(0.8))
                         }
                         .padding(Spacing.md)
-                        .background(AppColors.primary)
+                        .background(AppColors.forestGreen)
                         .cornerRadius(CornerRadius.medium)
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -90,11 +90,11 @@ struct WelcomeStepView: View {
                                 .foregroundColor(AppColors.textSecondary)
                         }
                         .padding(Spacing.md)
-                        .background(AppColors.background)
+                        .background(AppColors.cardBackground)
                         .cornerRadius(CornerRadius.medium)
                         .overlay(
                             RoundedRectangle(cornerRadius: CornerRadius.medium)
-                                .stroke(AppColors.primary.opacity(0.3), lineWidth: 1)
+                                .stroke(AppColors.forestGreen.opacity(0.3), lineWidth: 1)
                         )
                     }
                     .buttonStyle(PlainButtonStyle())

@@ -31,7 +31,7 @@ struct HealthKitStepView: View {
                 VStack(spacing: Spacing.md) {
                     Image(systemName: "heart.text.square")
                         .font(.system(size: 50))
-                        .foregroundColor(AppColors.primary)
+                        .foregroundColor(AppColors.forestGreen)
                     
                     Text("Connect to Apple Health")
                         .font(AppTypography.body(.semibold))
@@ -53,7 +53,7 @@ struct HealthKitStepView: View {
                         .foregroundColor(.white)
                         .padding(Spacing.md)
                         .frame(maxWidth: .infinity)
-                        .background(AppColors.primary)
+                        .background(AppColors.forestGreen)
                         .cornerRadius(CornerRadius.medium)
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -130,7 +130,7 @@ struct HealthKitStepView: View {
                         .foregroundColor(.white)
                         .padding(Spacing.md)
                         .frame(maxWidth: .infinity)
-                        .background(AppColors.primary)
+                        .background(AppColors.forestGreen)
                         .cornerRadius(CornerRadius.medium)
                     }
                     .buttonStyle(PlainButtonStyle())

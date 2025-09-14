@@ -218,7 +218,7 @@ struct FastingOptionView: View {
             HStack(spacing: Spacing.md) {
                 Image(systemName: fastingType.icon)
                     .font(.title3)
-                    .foregroundColor(isSelected ? .white : AppColors.primary)
+                    .foregroundColor(isSelected ? .white : AppColors.forestGreen)
                     .frame(width: 24)
                 
                 VStack(alignment: .leading, spacing: Spacing.xs) {
@@ -240,11 +240,11 @@ struct FastingOptionView: View {
                 }
             }
             .padding(Spacing.md)
-            .background(isSelected ? AppColors.primary : AppColors.background)
+            .background(isSelected ? AppColors.forestGreen : AppColors.background)
             .cornerRadius(CornerRadius.medium)
             .overlay(
                 RoundedRectangle(cornerRadius: CornerRadius.medium)
-                    .stroke(AppColors.primary.opacity(0.3), lineWidth: 1)
+                    .stroke(AppColors.forestGreen.opacity(0.3), lineWidth: 1)
             )
         }
         .buttonStyle(PlainButtonStyle())
@@ -260,7 +260,7 @@ struct MealTimeRow: View {
         HStack(spacing: Spacing.md) {
             Image(systemName: icon)
                 .font(.title3)
-                .foregroundColor(AppColors.primary)
+                .foregroundColor(AppColors.forestGreen)
                 .frame(width: 24)
             
             Text(title)
@@ -278,7 +278,7 @@ struct MealTimeRow: View {
                 .cornerRadius(CornerRadius.small)
                 .overlay(
                     RoundedRectangle(cornerRadius: CornerRadius.small)
-                        .stroke(AppColors.primary.opacity(0.3), lineWidth: 1)
+                        .stroke(AppColors.forestGreen.opacity(0.3), lineWidth: 1)
                 )
         }
     }
@@ -325,13 +325,13 @@ struct TimelineSliderView: View {
                 
                 // Feeding window - single connected rectangle
                 RoundedRectangle(cornerRadius: 6)
-                    .fill(AppColors.primary.opacity(0.3))
-                    .frame(width: feedingWindowLength * 12, height: 32) // 12 points per hour
-                    .offset(x: feedingWindowStart * 12 + 4, y: 4)
+                    .fill(AppColors.forestGreen.opacity(0.3))
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
-                            .stroke(AppColors.primary, lineWidth: 2)
+                            .stroke(AppColors.forestGreen, lineWidth: 2)
                     )
+                    .frame(width: feedingWindowLength * 12, height: 32) // 12 points per hour
+                    .offset(x: feedingWindowStart * 12 + 4, y: 4)
                     .gesture(
                         DragGesture()
                             .onChanged { value in
@@ -374,7 +374,7 @@ struct TimelineSliderView: View {
                 }
                 
                 Slider(value: $feedingWindowLength, in: 1...12, step: 1)
-                    .accentColor(AppColors.primary)
+                    .accentColor(AppColors.forestGreen)
                     .onChange(of: feedingWindowLength) { newValue in
                         // Ensure window doesn't go past 24 hours
                         if feedingWindowStart + newValue > 24 {
@@ -385,7 +385,7 @@ struct TimelineSliderView: View {
             }
         }
         .padding(Spacing.md)
-        .background(AppColors.primary.opacity(0.05))
+        .background(AppColors.forestGreen.opacity(0.05))
         .cornerRadius(CornerRadius.medium)
     }
     

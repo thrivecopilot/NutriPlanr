@@ -20,15 +20,14 @@ struct OnboardingFlowView: View {
                 
                 // Navigation buttons
                 OnboardingNavigationView(
-                    currentStep: currentStep,
-                    canProceed: canProceedToNextStep(),
+                    currentStep: $currentStep,
                     onNext: nextStep,
                     onPrevious: previousStep,
                     onComplete: completeOnboarding
                 )
                 .padding(Spacing.xl)
             }
-            .background(AppColors.background)
+            .background(AppColors.lightGreenTint)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -131,7 +130,7 @@ struct OnboardingFlowView: View {
     private func completeOnboarding() {
         // Create user from profile
         let user = userProfile.createUser()
-        appStateManager.currentUser = user
+        appStateManager.user = user
         appStateManager.completeOnboarding()
     }
 }

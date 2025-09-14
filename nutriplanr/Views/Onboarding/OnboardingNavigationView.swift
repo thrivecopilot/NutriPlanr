@@ -8,9 +8,6 @@ struct OnboardingNavigationView: View {
     
     var body: some View {
         VStack(spacing: Spacing.lg) {
-            // Progress indicator
-            OnboardingProgressView(currentStep: currentStep)
-            
             // Navigation buttons
             HStack(spacing: Spacing.md) {
                 // Previous button (hidden on first steps)
@@ -56,7 +53,7 @@ struct OnboardingNavigationView: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, Spacing.lg)
                     .padding(.vertical, Spacing.md)
-                    .background(AppColors.primary)
+                        .background(AppColors.forestGreen)
                     .cornerRadius(CornerRadius.medium)
                 }
                 .disabled(!canProceed)

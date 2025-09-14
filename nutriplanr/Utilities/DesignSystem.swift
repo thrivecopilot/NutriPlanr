@@ -12,6 +12,21 @@ struct AppColors {
     static let success = Color.green
     static let warning = Color.orange
     static let error = Color.red
+    
+    // Green theme colors (matching website) - Dark mode aware
+    static let forestGreen = Color("ForestGreen")
+    static let lightForestGreen = Color("LightForestGreen")
+    static let lightGreenTint = Color("LightGreenTint")
+    static let veryLightGreen = Color("VeryLightGreen")
+    
+    // Card and surface colors
+    static let cardBackground = Color(UIColor.systemBackground)
+    static let secondaryBackground = Color(UIColor.secondarySystemBackground)
+    static let tertiaryBackground = Color(UIColor.tertiarySystemBackground)
+    
+    // Border colors
+    static let border = Color(UIColor.separator)
+    static let borderLight = Color(UIColor.separator).opacity(0.3)
 }
 
 // MARK: - App Typography
