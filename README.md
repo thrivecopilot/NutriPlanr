@@ -1,134 +1,84 @@
-# Meal Plan Assistant
+# NutriPlanr
 
 A proactive nutrition planning application that focuses on planning and execution rather than reactive tracking. Built with SwiftUI for iOS.
 
 ## 🎯 Project Status
 
-**Current Phase**: Phase 1 - Foundation & Core Architecture ✅ **COMPLETED**
+**Current Phase**: Phase 2 - User Profile & Onboarding ✅ **COMPLETED**
 
 ## 🏗️ What's Been Built
 
-### ✅ **Core Data Models**
-- **User Model**: Complete user profile with height, weight, age, gender, activity level, goals, and dietary preferences
-- **Recipe Model**: Comprehensive recipe structure with ingredients, nutritional info, and preparation details
-- **MealPlan Model**: Weekly meal planning with daily breakdowns and nutritional targets
-- **NutritionalGoal Model**: Goal tracking with progress monitoring and analytics
+### ✅ **Complete Onboarding Flow**
+- **Welcome Screen**: Choice between HealthKit sync or manual entry
+- **HealthKit Integration**: Automatic data population from Apple Health
+- **Basic Info Collection**: Height (feet/inches), weight (pounds), age, gender, activity level
+- **Goals Selection**: Weight management and health focus areas with contextual options
+- **Dietary Preferences**: Restrictions and cuisine preferences with proper sizing
+- **Meal Timing**: Interactive timeline slider for intermittent fasting with 10-minute increments
+- **Budget Planning**: Weekly grocery budget with guidelines
+- **Summary Screen**: Complete profile overview before completion
 
-### ✅ **Architecture & State Management**
-- **MVVM Architecture**: Clean separation of concerns with ObservableObject pattern
-- **AppStateManager**: Centralized state management with proper data flow
-- **Combine Integration**: Reactive state updates and data binding
-- **Proper Initialization**: All data structures properly initialized with error handling
+### ✅ **Modern UI/UX Design**
+- **HealthKit-First Approach**: Streamlined flow with optional manual entry
+- **Interactive Timeline Slider**: Visual 24-hour feeding window adjustment
+- **Conditional UI Elements**: Smart visibility based on user selections
+- **US Imperial Units**: Consistent feet/inches and pounds throughout
+- **Responsive Layout**: Proper text fitting and scrollable content
+- **Modern Design Language**: Clean, contemporary interface
 
-### ✅ **Design System**
-- **8pt Grid System**: Consistent spacing throughout the UI
-- **Uniform Widget Sizing**: Standardized component dimensions
-- **Color Palette**: Accessible colors with light/dark mode support
-- **Typography System**: Consistent font sizing and weights
-- **Component Library**: Reusable UI components with proper constraints
+### ✅ **Technical Architecture**
+- **MVVM Pattern**: Clean separation with ObservableObject and Combine
+- **State Management**: Centralized AppStateManager with proper data flow
+- **HealthKit Service**: Complete integration with authorization and data fetching
+- **Design System**: Comprehensive spacing, colors, and typography
+- **Error Handling**: Robust error management and user feedback
 
-### ✅ **Services & Infrastructure**
-- **DataPersistenceService**: Placeholder for data persistence (UserDefaults/Core Data)
-- **HealthKitService**: Placeholder for Apple HealthKit integration
-- **Error Handling**: Comprehensive error management and user feedback
+## 🚀 Key Features
 
-### ✅ **UI Foundation**
-- **Tab Navigation**: Main app structure with 5 core tabs
-- **Loading States**: Proper loading and error handling
-- **Onboarding Flow**: Welcome screen and user setup
-- **Responsive Design**: Adaptive layouts for different screen sizes
+### **Smart Onboarding Flow**
+1. **Welcome**: Choose HealthKit sync or manual entry
+2. **HealthKit**: Automatic population of height, weight, age, gender
+3. **Basic Info**: Manual entry with feet/inches and pounds
+4. **Goals**: Weight management with contextual target weight and intensity
+5. **Health Focus**: Energy levels, blood lipids, sleep quality, etc.
+6. **Dietary**: Restrictions and cuisine preferences
+7. **Meal Timing**: Interactive fasting schedule with timeline slider
+8. **Budget**: Weekly grocery budget with spending guidelines
+9. **Summary**: Complete profile review
 
-## 🚀 Next Steps
+### **Interactive Meal Timing**
+- **Visual Timeline**: 24-hour slider with hour markers
+- **Draggable Window**: Move feeding window in 10-minute increments
+- **Automatic Updates**: Meal times adjust based on window position
+- **Manual Editing**: Available when "Custom" timing is selected
+- **Fasting Options**: 16:8, 14:10, 12:12, OMAD, and Custom
 
-### **Phase 2: User Profile & Onboarding (Weeks 3-4)**
-- [ ] Build onboarding wizard with step-by-step flow
-- [ ] Implement profile input forms (height, weight, activity level)
-- [ ] Add goal selection interface (fat loss, muscle gain, health)
-- [ ] Create dietary restrictions and cuisine preferences
-- [ ] Implement Apple HealthKit integration for bio data
-
-### **Phase 3: Meal Planning Engine (Weeks 5-7)**
-- [ ] Build macro calculation engine based on user goals
-- [ ] Create weekly meal plan structure (7 days, 3-5 meals/day)
-- [ ] Implement recipe recommendation algorithm
-- [ ] Add meal timing and portion size calculations
+### **HealthKit Integration**
+- **Automatic Data Sync**: Height, weight, age, gender from Apple Health
+- **Graceful Fallback**: Manual entry if HealthKit unavailable
+- **Proper Authorization**: Complete permission handling
+- **Unit Conversion**: Automatic conversion from metric to imperial
 
 ## 🛠️ Technical Implementation
 
 ### **Architecture Pattern**
 ```
-User Input → ViewModels → Business Logic → Data Layer → Core Data
+User Input → ViewModels → Business Logic → HealthKit/Data Layer
     ↓
 UI Updates ← State Changes ← ObservableObject ← @Published Properties
 ```
 
-### **Folder Structure**
-```
-nutriplanr/
-├── Models/
-│   ├── User.swift
-│   ├── MealPlan.swift
-│   ├── Recipe.swift
-│   └── NutritionalGoal.swift
-├── ViewModels/
-│   └── AppStateManager.swift
-├── Views/
-│   └── ContentView.swift
-├── Services/
-│   ├── DataPersistenceService.swift
-│   └── HealthKitService.swift
-├── Utilities/
-│   └── DesignSystem.swift
-└── Assets.xcassets/
-    ├── PrimaryColor.colorset/
-    ├── BackgroundColor.colorset/
-    ├── TextColor.colorset/
-    └── TextSecondaryColor.colorset/
-```
+### **Key Components**
+- **OnboardingFlowView**: Main orchestrator for multi-step flow
+- **TimelineSliderView**: Interactive 24-hour feeding window
+- **HealthKitService**: Complete Apple Health integration
+- **AppStateManager**: Centralized state and navigation
+- **DesignSystem**: Comprehensive styling and spacing
 
-### **Key Features Implemented**
-- **Clean Spacing**: 8pt grid system with consistent margins and padding
-- **Uniform Widgets**: Standardized button heights, input fields, and card dimensions
-- **State Management**: Proper MVVM with ObservableObject and Combine
-- **Modular Design**: Separated concerns with reusable components
-- **Best Practices**: SwiftUI best practices with proper error handling
-
-## 🎨 Design System
-
-### **Spacing Constants**
-```swift
-struct Spacing {
-    static let xs: CGFloat = 4   // 0.5x grid
-    static let sm: CGFloat = 8   // 1x grid
-    static let md: CGFloat = 16  // 2x grid
-    static let lg: CGFloat = 24  // 3x grid
-    static let xl: CGFloat = 32  // 4x grid
-    static let xxl: CGFloat = 48 // 6x grid
-}
-```
-
-### **Component Sizing**
-```swift
-struct ComponentSize {
-    static let buttonHeight: CGFloat = 44
-    static let inputFieldHeight: CGFloat = 48
-    static let cardCornerRadius: CGFloat = 12
-    static let mealCardHeight: CGFloat = 120
-}
-```
-
-### **Color Palette**
-- **Primary**: Green-based color for main actions
-- **Background**: Light gray for app background
-- **Text**: Dark gray for primary text
-- **Text Secondary**: Medium gray for secondary text
-
-## 📱 Current App Structure
-
-The app currently shows:
-1. **Loading Screen**: While initializing data
-2. **Onboarding**: Welcome screen for new users
-3. **Main App**: Tab-based navigation with placeholder content
+### **Data Models**
+- **User**: Complete profile with imperial units and health goals
+- **MealTiming**: Fasting schedules and meal times
+- **HealthImprovementGoal**: Focus areas for nutrition planning
 
 ## 🔧 Development Setup
 
@@ -136,54 +86,58 @@ The app currently shows:
 - Xcode 16.4+
 - iOS 18.5+
 - Swift 5.0+
+- HealthKit capability (for full functionality)
 
 ### **Building the App**
 1. Open `nutriplanr.xcodeproj` in Xcode
 2. Select your target device or simulator
 3. Build and run the project
+4. Grant HealthKit permissions when prompted
 
 ### **Current Features**
-- ✅ App launches and shows onboarding
-- ✅ Tab navigation structure
-- ✅ Placeholder views for all main sections
-- ✅ Design system with consistent spacing
-- ✅ State management foundation
+- ✅ Complete onboarding flow with 8 steps
+- ✅ HealthKit integration with automatic data sync
+- ✅ Interactive timeline slider for meal timing
+- ✅ Modern, responsive UI design
+- ✅ US Imperial units throughout
+- ✅ Conditional UI based on user selections
+- ✅ Proper error handling and validation
 
-## 📋 Development Checklist
+## 📱 App Flow
 
-### **Phase 1 - Foundation ✅**
-- [x] Project structure and folder organization
-- [x] Core data models (User, Recipe, MealPlan, NutritionalGoal)
-- [x] MVVM architecture with AppStateManager
-- [x] Design system (spacing, sizing, colors, typography)
-- [x] Basic UI foundation with tab navigation
-- [x] Placeholder services (DataPersistence, HealthKit)
+1. **Launch** → Welcome screen with HealthKit/Manual choice
+2. **HealthKit** → Automatic data population (if available)
+3. **Basic Info** → Height, weight, age, gender, activity level
+4. **Goals** → Weight management and health focus areas
+5. **Dietary** → Restrictions and cuisine preferences
+6. **Meal Timing** → Interactive fasting schedule
+7. **Budget** → Weekly grocery budget
+8. **Summary** → Complete profile review
+9. **Complete** → Ready for meal planning
 
-### **Phase 2 - User Profile & Onboarding**
-- [ ] Onboarding wizard implementation
-- [ ] Profile input forms
-- [ ] Goal selection interface
-- [ ] HealthKit integration
-- [ ] Data persistence implementation
+## 🎨 Design System
 
-### **Phase 3 - Meal Planning Engine**
-- [ ] Macro calculation engine
-- [ ] Meal plan generation
-- [ ] Recipe recommendation system
-- [ ] Plan customization interface
+### **Spacing & Layout**
+- **8pt Grid System**: Consistent spacing throughout
+- **Responsive Design**: Proper text fitting and scrolling
+- **Uniform Components**: Standardized button and input sizing
+- **Modern Typography**: Clean, readable font hierarchy
+
+### **Interactive Elements**
+- **Timeline Slider**: Visual 24-hour feeding window
+- **Conditional UI**: Smart visibility based on selections
+- **Smooth Animations**: Polished user interactions
+- **Accessibility**: Proper contrast and touch targets
 
 ## 🤝 Contributing
 
-This is a development project following the Meal Plan Assistant PRD. The app is built with a focus on:
-- **Clean, even spacing** throughout the UI
-- **Uniform, consistent widget sizing**
-- **Proper state management and initialization**
-- **Simple, scalable, and modular architecture**
-- **Best practices for iOS development and UI/UX**
+This project follows modern iOS development best practices:
+- **SwiftUI**: Modern declarative UI framework
+- **MVVM Architecture**: Clean separation of concerns
+- **HealthKit Integration**: Proper Apple Health integration
+- **User Experience**: Intuitive, modern interface design
+- **Code Quality**: Well-structured, maintainable code
 
 ## 📄 License
 
-This project is part of the Meal Plan Assistant development initiative.
-
-
-
+This project is part of the NutriPlanr development initiative.

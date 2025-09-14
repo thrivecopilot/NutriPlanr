@@ -1,69 +1,104 @@
 import SwiftUI
 
 struct OnboardingNavigationView: View {
-    let currentStep: OnboardingStep
-    let canProceed: Bool
+    @Binding var currentStep: OnboardingStep
     let onNext: () -> Void
     let onPrevious: () -> Void
     let onComplete: () -> Void
     
     var body: some View {
-        // Hide navigation on Welcome and HealthKit steps since they auto-advance
-        if currentStep == .welcome || currentStep == .healthKit {
-            EmptyView()
-        } else {
+        VStack(spacing: Spacing.lg) {
+            // Progress indicator
+            OnboardingProgressView(currentStep: currentStep)
+            
+            // Navigation buttons
             HStack(spacing: Spacing.md) {
-                // Previous button
-                if let _ = currentStep.previous {
+                // Previous button (hidden on first steps)
+                if shouldShowPreviousButton {
                     Button(action: onPrevious) {
                         HStack(spacing: Spacing.sm) {
                             Image(systemName: "chevron.left")
-                                .font(.title3)
-                            
+                                .font(.system(size: 16, weight: .medium))
                             Text("Back")
-                                .font(AppTypography.body(.semibold))
+                                .font(AppTypography.body(.medium))
                         }
                         .foregroundColor(AppColors.textSecondary)
-                        .padding(Spacing.md)
-                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, Spacing.lg)
+                        .padding(.vertical, Spacing.md)
                         .background(AppColors.background)
                         .cornerRadius(CornerRadius.medium)
                         .overlay(
                             RoundedRectangle(cornerRadius: CornerRadius.medium)
-                                .stroke(AppColors.primary.opacity(0.3), lineWidth: 1)
+                                .stroke(AppColors.textSecondary.opacity(0.3), lineWidth: 1)
                         )
                     }
-                    .buttonStyle(PlainButtonStyle())
                 }
                 
+                Spacer()
+                
                 // Next/Complete button
-                Button(action: currentStep == .summary ? onComplete : onNext) {
+                Button(action: {
+                    if currentStep == .summary {
+                        onComplete()
+                    } else {
+                        onNext()
+                    }
+                }) {
                     HStack(spacing: Spacing.sm) {
                         Text(currentStep == .summary ? "Get Started" : "Next")
                             .font(AppTypography.body(.semibold))
                         
                         if currentStep != .summary {
                             Image(systemName: "chevron.right")
-                                .font(.title3)
+                                .font(.system(size: 16, weight: .medium))
                         }
                     }
                     .foregroundColor(.white)
-                    .padding(Spacing.md)
-                    .frame(maxWidth: .infinity)
-                    .background(canProceed ? AppColors.primary : AppColors.textSecondary)
+                    .padding(.horizontal, Spacing.lg)
+                    .padding(.vertical, Spacing.md)
+                    .background(AppColors.primary)
                     .cornerRadius(CornerRadius.medium)
                 }
-                .buttonStyle(PlainButtonStyle())
                 .disabled(!canProceed)
+                .opacity(canProceed ? 1.0 : 0.6)
             }
+        }
+        .padding(.horizontal, Spacing.lg)
+        .padding(.bottom, Spacing.xl)
+    }
+    
+    private var shouldShowPreviousButton: Bool {
+        switch currentStep {
+        case .welcome, .healthKit:
+            return false
+        default:
+            return true
+        }
+    }
+    
+    private var canProceed: Bool {
+        switch currentStep {
+        case .welcome, .healthKit:
+            return true
+        case .basicInfo:
+            return true // Will be validated in the step view
+        case .goals:
+            return true // Will be validated in the step view
+        case .dietaryPreferences:
+            return true
+        case .mealTiming:
+            return true
+        case .budget:
+            return true
+        case .summary:
+            return true
         }
     }
 }
 
 #Preview {
     OnboardingNavigationView(
-        currentStep: .welcome,
-        canProceed: true,
+        currentStep: .constant(.goals),
         onNext: {},
         onPrevious: {},
         onComplete: {}
