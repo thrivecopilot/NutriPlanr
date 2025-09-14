@@ -9,6 +9,10 @@ struct OnboardingProgressView: View {
             ProgressView(value: progressValue)
                 .progressViewStyle(LinearProgressViewStyle(tint: AppColors.primary))
                 .scaleEffect(x: 1, y: 2, anchor: .center)
+                .background(
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(AppColors.borderLight)
+                )
             
             // Step indicators
             HStack(spacing: Spacing.sm) {
@@ -28,6 +32,8 @@ struct OnboardingProgressView: View {
         }
         .padding(.horizontal, Spacing.xl)
         .padding(.top, Spacing.lg)
+        .padding(.bottom, Spacing.md)
+        .background(AppColors.cardBackground)
     }
     
     private var progressValue: Double {

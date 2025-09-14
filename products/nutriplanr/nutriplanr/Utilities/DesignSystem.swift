@@ -12,6 +12,15 @@ struct AppColors {
     static let success = Color.green
     static let warning = Color.orange
     static let error = Color.red
+    
+    // Card and surface colors
+    static let cardBackground = Color(UIColor.systemBackground)
+    static let secondaryBackground = Color(UIColor.secondarySystemBackground)
+    static let tertiaryBackground = Color(UIColor.tertiarySystemBackground)
+    
+    // Border colors
+    static let border = Color(UIColor.separator)
+    static let borderLight = Color(UIColor.separator).opacity(0.3)
 }
 
 // MARK: - App Typography

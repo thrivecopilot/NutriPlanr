@@ -11,10 +11,12 @@ struct OnboardingFlowView: View {
             VStack(spacing: 0) {
                 // Progress indicator
                 OnboardingProgressView(currentStep: currentStep)
+                    .padding(.bottom, Spacing.lg)
                 
                 // Step content
                 stepContent
-                    .padding(Spacing.xl)
+                    .padding(.horizontal, Spacing.xl)
+                    .padding(.top, Spacing.lg)
                 
                 Spacer()
                 
@@ -25,7 +27,13 @@ struct OnboardingFlowView: View {
                     onPrevious: previousStep,
                     onComplete: completeOnboarding
                 )
-                .padding(Spacing.xl)
+                .padding(.horizontal, Spacing.xl)
+                .padding(.bottom, Spacing.xl)
+                .background(
+                    Rectangle()
+                        .fill(AppColors.cardBackground)
+                        .shadow(color: AppShadows.small, radius: 8, x: 0, y: -4)
+                )
             }
             .background(AppColors.background)
             .navigationBarHidden(true)

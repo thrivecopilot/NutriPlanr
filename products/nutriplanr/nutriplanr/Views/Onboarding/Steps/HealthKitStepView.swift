@@ -28,19 +28,22 @@ struct HealthKitStepView: View {
             
             if !isAuthorized && !syncComplete {
                 // Authorization Request - More compact
-                VStack(spacing: Spacing.md) {
+                VStack(spacing: Spacing.lg) {
                     Image(systemName: "heart.text.square")
                         .font(.system(size: 50))
                         .foregroundColor(AppColors.primary)
                     
-                    Text("Connect to Apple Health")
-                        .font(AppTypography.body(.semibold))
-                        .foregroundColor(AppColors.text)
-                    
-                    Text("This allows us to access your health data to provide personalized nutrition recommendations")
-                        .font(AppTypography.caption())
-                        .foregroundColor(AppColors.textSecondary)
-                        .multilineTextAlignment(.center)
+                    VStack(spacing: Spacing.sm) {
+                        Text("Connect to Apple Health")
+                            .font(AppTypography.title(.semibold))
+                            .foregroundColor(AppColors.text)
+                            .multilineTextAlignment(.center)
+                        
+                        Text("This allows us to access your health data to provide personalized nutrition recommendations")
+                            .font(AppTypography.body())
+                            .foregroundColor(AppColors.textSecondary)
+                            .multilineTextAlignment(.center)
+                    }
                     
                     Button(action: requestHealthKitAccess) {
                         HStack(spacing: Spacing.sm) {
@@ -51,47 +54,54 @@ struct HealthKitStepView: View {
                                 .font(AppTypography.body(.semibold))
                         }
                         .foregroundColor(.white)
-                        .padding(Spacing.md)
+                        .padding(Spacing.lg)
                         .frame(maxWidth: .infinity)
                         .background(AppColors.primary)
                         .cornerRadius(CornerRadius.medium)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
-                .padding(Spacing.md)
-                .background(AppColors.background)
-                .cornerRadius(CornerRadius.medium)
+                .padding(Spacing.xl)
+                .background(AppColors.cardBackground)
+                .cornerRadius(CornerRadius.large)
                 .overlay(
-                    RoundedRectangle(cornerRadius: CornerRadius.medium)
-                        .stroke(AppColors.primary.opacity(0.2), lineWidth: 1)
+                    RoundedRectangle(cornerRadius: CornerRadius.large)
+                        .stroke(AppColors.border, lineWidth: 1)
                 )
+                .shadow(color: AppShadows.small, radius: 8, x: 0, y: 4)
             }
             
             if isAuthorized && !syncComplete {
                 // Syncing Data - More compact
-                VStack(spacing: Spacing.md) {
+                VStack(spacing: Spacing.lg) {
                     if isSyncing {
                         ProgressView()
                             .scaleEffect(1.2)
                             .progressViewStyle(CircularProgressViewStyle(tint: AppColors.primary))
                         
                         Text("Syncing your health data...")
-                            .font(AppTypography.body())
+                            .font(AppTypography.body(.semibold))
                             .foregroundColor(AppColors.text)
                     }
                 }
-                .padding(Spacing.md)
+                .padding(Spacing.xl)
+                .background(AppColors.cardBackground)
+                .cornerRadius(CornerRadius.large)
+                .overlay(
+                    RoundedRectangle(cornerRadius: CornerRadius.large)
+                        .stroke(AppColors.border, lineWidth: 1)
+                )
             }
             
             if syncComplete {
                 // Sync Results - More compact
-                VStack(spacing: Spacing.md) {
+                VStack(spacing: Spacing.lg) {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 50))
                         .foregroundColor(.green)
                     
                     Text("Data Synced Successfully!")
-                        .font(AppTypography.body(.semibold))
+                        .font(AppTypography.title(.semibold))
                         .foregroundColor(AppColors.text)
                     
                     // Show imported data - More compact
@@ -114,8 +124,8 @@ struct HealthKitStepView: View {
                             DataRow(label: "Activity Level", value: userProfile.activityLevel.displayName)
                         }
                     }
-                    .padding(Spacing.md)
-                    .background(AppColors.background)
+                    .padding(Spacing.lg)
+                    .background(AppColors.secondaryBackground)
                     .cornerRadius(CornerRadius.medium)
                     
                     // Auto-advance button
@@ -128,41 +138,63 @@ struct HealthKitStepView: View {
                                 .font(.title3)
                         }
                         .foregroundColor(.white)
-                        .padding(Spacing.md)
+                        .padding(Spacing.lg)
                         .frame(maxWidth: .infinity)
                         .background(AppColors.primary)
                         .cornerRadius(CornerRadius.medium)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
+                .padding(Spacing.xl)
+                .background(AppColors.cardBackground)
+                .cornerRadius(CornerRadius.large)
+                .overlay(
+                    RoundedRectangle(cornerRadius: CornerRadius.large)
+                        .stroke(AppColors.border, lineWidth: 1)
+                )
+                .shadow(color: AppShadows.small, radius: 8, x: 0, y: 4)
             }
             
             if let error = syncError {
                 // Error State - More compact
-                VStack(spacing: Spacing.sm) {
+                VStack(spacing: Spacing.lg) {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .font(.system(size: 30))
+                        .font(.system(size: 40))
                         .foregroundColor(.orange)
                     
-                    Text("Sync Issue")
-                        .font(AppTypography.body(.semibold))
-                        .foregroundColor(AppColors.text)
-                    
-                    Text(error)
-                        .font(AppTypography.caption())
-                        .foregroundColor(AppColors.textSecondary)
-                        .multilineTextAlignment(.center)
+                    VStack(spacing: Spacing.sm) {
+                        Text("Sync Issue")
+                            .font(AppTypography.title(.semibold))
+                            .foregroundColor(AppColors.text)
+                        
+                        Text(error)
+                            .font(AppTypography.body())
+                            .foregroundColor(AppColors.textSecondary)
+                            .multilineTextAlignment(.center)
+                    }
                     
                     Button("Try Again") {
                         syncError = nil
                         requestHealthKitAccess()
                     }
                     .foregroundColor(AppColors.primary)
-                    .padding(Spacing.sm)
+                    .padding(Spacing.lg)
+                    .frame(maxWidth: .infinity)
+                    .background(AppColors.secondaryBackground)
+                    .cornerRadius(CornerRadius.medium)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: CornerRadius.medium)
+                            .stroke(AppColors.primary, lineWidth: 1)
+                    )
                 }
-                .padding(Spacing.md)
-                .background(AppColors.background)
-                .cornerRadius(CornerRadius.medium)
+                .padding(Spacing.xl)
+                .background(AppColors.cardBackground)
+                .cornerRadius(CornerRadius.large)
+                .overlay(
+                    RoundedRectangle(cornerRadius: CornerRadius.large)
+                        .stroke(AppColors.border, lineWidth: 1)
+                )
+                .shadow(color: AppShadows.small, radius: 8, x: 0, y: 4)
             }
             
             Spacer()

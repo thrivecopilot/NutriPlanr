@@ -8,9 +8,6 @@ struct OnboardingNavigationView: View {
     
     var body: some View {
         VStack(spacing: Spacing.lg) {
-            // Progress indicator
-            OnboardingProgressView(currentStep: currentStep)
-            
             // Navigation buttons
             HStack(spacing: Spacing.md) {
                 // Previous button (hidden on first steps)
@@ -22,14 +19,14 @@ struct OnboardingNavigationView: View {
                             Text("Back")
                                 .font(AppTypography.body(.medium))
                         }
-                        .foregroundColor(AppColors.textSecondary)
+                        .foregroundColor(AppColors.text)
                         .padding(.horizontal, Spacing.lg)
                         .padding(.vertical, Spacing.md)
-                        .background(AppColors.background)
+                        .background(AppColors.secondaryBackground)
                         .cornerRadius(CornerRadius.medium)
                         .overlay(
                             RoundedRectangle(cornerRadius: CornerRadius.medium)
-                                .stroke(AppColors.textSecondary.opacity(0.3), lineWidth: 1)
+                                .stroke(AppColors.border, lineWidth: 1)
                         )
                     }
                 }
@@ -64,6 +61,7 @@ struct OnboardingNavigationView: View {
             }
         }
         .padding(.horizontal, Spacing.lg)
+        .padding(.top, Spacing.lg)
         .padding(.bottom, Spacing.xl)
     }
     
